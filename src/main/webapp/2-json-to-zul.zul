@@ -1,0 +1,75 @@
+<zk>
+	<style>
+		.formItem{
+			padding-left: 20px;
+		}
+		.formItem .z-label{
+			padding-right:5px;
+		}
+		.formItemChildren{
+			padding-top: 10px;
+		}
+	</style>
+	<div apply="org.zkoss.demo.formbuilder.training.JsonToZulComposer">
+		<button id="buildZulFromJson" label="build zul from model" />
+		<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
+        	[{
+        		"name": "user first name",
+        		"type": "shortText",
+        		"value": "first name"
+        	},
+        	{
+        		"name": "user last name",
+        		"type": "shortText",
+        		"value": "last name"
+        	},
+        	{
+        		"name": "password",
+        		"type": "hiddenText",
+        		"value": ""
+        	}, 
+        	{
+        		"name": "repeat password",
+        		"type": "hiddenText",
+        		"value": ""
+        	},
+        	{
+        		"name": "user details",
+        		"type": "labelOnly",
+        		"value": "user details",
+        		"children":[
+					{
+						"name": "user address",
+						"type": "longText",
+						"value": ""
+					},
+					{
+						"name": "user age",
+						"type": "integer",
+						"value": 0
+					},
+					{
+						"name": "user notes",
+						"type": "longText",
+						"value": "Add any additional information to this field"
+					}
+	            ]
+        	}
+       	 	]
+		]]></attribute>
+		</textbox>
+		<textbox multiline="true" readonly="true" height="200px" width="100%"><attribute name="value"><![CDATA[/*JSON importing schema for this training sample:*/
+[
+ 	{
+		"name": the name of the form item (ID),
+		"type": the template to be used for this item,
+		"value": the default value of this item
+		"children":[
+			an array of nodes, with the same schema as this one, for n+1 level form item descendants
+		]
+	}
+]]]></attribute></textbox>
+		<window id="host">
+		</window>
+	</div>
+</zk>
