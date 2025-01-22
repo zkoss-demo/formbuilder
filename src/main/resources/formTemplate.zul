@@ -1,0 +1,16 @@
+<zk>
+    <grid apply="org.zkoss.demo.formbuilder.FormComposer" sizedByContent="true" width="fit-content">
+        <columns>
+            <column label="name"/>
+            <column/>
+        </columns>
+        <rows>
+        #foreach( $rowContent in $rowsContent )
+            <row>$rowContent</row>
+        #end
+            <row>
+                <cell colspan="2" align="right"><button label="save" id="savebtn"/></cell>
+            </row>
+        </rows>
+    </grid>
+</zk>

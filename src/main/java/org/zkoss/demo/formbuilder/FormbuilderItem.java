@@ -8,9 +8,9 @@ import java.util.Map;
  */
 public class FormbuilderItem {
 
-	private String name;
-	private String type;
-	private Object value;
+	private String name; //input label
+	private String type; //input type
+	private Object value; //input value
 	
 	public FormbuilderItem() {
 		super();
