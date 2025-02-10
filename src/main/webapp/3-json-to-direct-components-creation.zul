@@ -1,4 +1,4 @@
-<zk>
+<zk xmlns:h="native">
 	<style>
 		.formItem{
 			padding-left: 20px;
@@ -14,6 +14,7 @@
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.training.JsonToComponentsComposer">
 		<button id="buildZulFromJson" label="build zul from model" />
+		<h:h2>JSON Data</h:h2>
 	<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
         	[{
         		"name": "user first name",
@@ -60,6 +61,7 @@
        	 	]
 		]]></attribute>
 		</textbox>
+		<h:h2>JSON Schema</h:h2>
 		<textbox multiline="true" readonly="true" height="200px" width="100%"><attribute name="value"><![CDATA[/*JSON importing schema for this training sample:*/
 [
  	{
@@ -71,7 +73,8 @@
 		]
 	}
 ]]]></attribute></textbox>
-		<window id="host">
-		</window>
+		<h:h2>Generated Form</h:h2>
+		<div id="host">
+		</div>
 	</div>
 </zk>

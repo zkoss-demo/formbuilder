@@ -1,4 +1,4 @@
-<zk>
+<zk xmlns:h="native">
 	<style>
 		.formItem{
 			padding-left: 20px;
@@ -6,8 +6,8 @@
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.training.AbstractToZulComposer">
 		<button id="buildZulFromAbstract" label="build zul from model" />
-		<div id="host" style="margin: 10px">
-		
+		<h:h2>Generated Form</h:h2>
+		<div id="host" style="margin: 10px 0">
 		</div>
 	</div>
 </zk>
