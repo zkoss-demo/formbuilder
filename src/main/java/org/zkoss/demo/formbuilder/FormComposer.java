@@ -1,27 +1,27 @@
 package org.zkoss.demo.formbuilder;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
-import org.zkoss.zk.ui.select.annotation.Listen;
-import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zk.ui.util.*;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.impl.InputElement;
 
 /**
  * default composer for the generated form
  */
 public class FormComposer extends SelectorComposer {
 
+	@Wire("textbox, intbox")
+	List<InputElement> inputElements;
+
 	@Listen("onClick=#savebtn")
 	public void doSaveForm() {
-		Collection<Component> fellows = getSelf().getFellows();
 		Map<String, Object> returnedValues = new HashMap<String, Object>();
-		for (Iterator<Component> iterator = fellows.iterator(); iterator.hasNext();) {
+		for (Iterator<InputElement> iterator = inputElements.iterator(); iterator.hasNext();) {
 			Component comp = iterator.next();
 			Object value = null;
 			switch (comp.getClass().getSimpleName()) {
@@ -36,6 +36,6 @@ public class FormComposer extends SelectorComposer {
 			}
 			returnedValues.put(comp.getId(), value);
 		}
-
+		Notification.show(returnedValues.toString());
 	}
 }
