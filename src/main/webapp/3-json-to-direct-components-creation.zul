@@ -61,18 +61,6 @@
        	 	]
 		]]></attribute>
 		</textbox>
-		<h:h2>JSON Schema</h:h2>
-		<textbox multiline="true" readonly="true" height="200px" width="100%"><attribute name="value"><![CDATA[/*JSON importing schema for this training sample:*/
-[
- 	{
-		"name": the name of the form item (ID),
-		"type": the template to be used for this item,
-		"value": the default value of this item
-		"children":[
-			an array of nodes, with the same schema as this one, for n+1 level form item descendants
-		]
-	}
-]]]></attribute></textbox>
 		<h:h2>Generated Form</h:h2>
 		<div id="host">
 		</div>
