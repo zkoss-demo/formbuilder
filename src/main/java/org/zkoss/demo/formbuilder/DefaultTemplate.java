@@ -1,9 +1,9 @@
-package org.zkoss.demo.formbuilder.training;
+package org.zkoss.demo.formbuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultTrainingTemplateUtils {
+public class DefaultTemplate {
 
 	public static Map<? extends String, ? extends String> getDefaultFormbuilderItemTemplates() {
 		Map<String, String> output = new HashMap<String, String>();

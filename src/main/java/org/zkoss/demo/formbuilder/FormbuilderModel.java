@@ -14,6 +14,9 @@ import org.zkoss.zul.TreeNode;
 
 import com.google.common.base.Strings;
 
+/**
+ * store a form structure in a tree
+ */
 public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
 
 	private Map<String,String> formbuilderItemTemplates;
@@ -21,7 +24,7 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
 
 	public FormbuilderModel(FormbuilderNode root) {
 		super(root);
-		formbuilderItemTemplates = new HashMap<String, String>();
+		formbuilderItemTemplates = new HashMap<String, String>(DefaultTemplate.getDefaultFormbuilderItemTemplates());
 		initTemplateEngine();
 	}
 

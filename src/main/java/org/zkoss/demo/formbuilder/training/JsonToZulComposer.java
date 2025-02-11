@@ -2,9 +2,7 @@ package org.zkoss.demo.formbuilder.training;
 
 import java.util.ArrayList;
 
-import org.zkoss.demo.formbuilder.FormbuilderItem;
-import org.zkoss.demo.formbuilder.FormbuilderModel;
-import org.zkoss.demo.formbuilder.FormbuilderNode;
+import org.zkoss.demo.formbuilder.*;
 import org.zkoss.json.JSONArray;
 import org.zkoss.json.JSONObject;
 import org.zkoss.json.parser.JSONParser;
@@ -15,9 +13,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
 
 
 public class JsonToZulComposer extends SelectorComposer<Component> {
@@ -53,7 +49,6 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 			}
 		}
 		formModel = new FormbuilderModel(root);
-		formModel.getFormbuilderItemTemplates().putAll(DefaultTrainingTemplateUtils.getDefaultFormbuilderItemTemplates());
 		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
 		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
 		String zulData = formModel.toZulOutput();
