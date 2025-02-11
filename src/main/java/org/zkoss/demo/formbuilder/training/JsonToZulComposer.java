@@ -27,22 +27,21 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 	
 	@Wire
 	Textbox source;
-	
-	@Override
-	public void doAfterCompose(Component comp) throws Exception {
-		super.doAfterCompose(comp);
-	}
-	
-	@Listen("onClick=#buildZulFromJson")
-	public void buildZulFromAbstract() {
-		JSONParser parser = new JSONParser();
-		JSONArray jsonData = null;
-		try {
-			jsonData = (JSONArray) parser.parse(source.getValue());
-		}catch(ParseException e){
-			e.printStackTrace();
-		}
 
+	@Listen("onClick=#buildZulFromJson")
+	public void build() {
+		JSONArray jsonData = parseJsonString();
+		buildFormModel(jsonData);
+		addFieldTemplates();
+		recreate();
+	}
+
+	private void recreate() {
+        Components.removeAllChildren(host);
+		Executions.createComponentsDirectly(formModel.toZulOutput(), null, host, null);
+	}
+
+	private void buildFormModel(JSONArray jsonData) {
 		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
 		for (Object jsonNode : jsonData) {
 			if(jsonNode instanceof JSONObject) {
@@ -51,12 +50,22 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 			}
 		}
 		formModel = new FormbuilderModel(root);
+	}
+
+	private void addFieldTemplates() {
 		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
 		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
-		String zulData = formModel.toZulOutput();
+	}
 
-		Components.removeAllChildren(host);
-		Executions.createComponentsDirectly(zulData, null, host, null);
+	private JSONArray parseJsonString() {
+		JSONParser parser = new JSONParser();
+		JSONArray jsonData = null;
+		try {
+			jsonData = (JSONArray) parser.parse(source.getValue());
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+		return jsonData;
 	}
 
 	private FormbuilderNode getNodeFromJsonObject(JSONObject jsonObjectNode) {

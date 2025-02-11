@@ -21,6 +21,13 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		buildFormModel();
+	}
+
+	/**
+	 * assume you already have a form structure in mind.
+	 */
+	private void buildFormModel() {
 		FormbuilderNode root = new FormbuilderNode(new FormbuilderItem(),new ArrayList<FormbuilderNode>());
 		formModel = new FormbuilderModel(root);
 		root.add(new FormbuilderNode(new FormbuilderItem("input1", "shortText", "foo"),new ArrayList<FormbuilderNode>()));
@@ -31,7 +38,7 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 		root.add(new FormbuilderNode(new FormbuilderItem("input2", "shortText", "bar"),node2children));
 		root.add(new FormbuilderNode(new FormbuilderItem("input3", "shortText", "baz"),new ArrayList<FormbuilderNode>()));
 	}
-	
+
 	@Listen("onClick=#buildZulFromAbstract")
 	public void buildZulFromAbstract() {
 		String zulData = formModel.toZulOutput();
@@ -39,5 +46,4 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 		Components.removeAllChildren(host);
 		Executions.createComponentsDirectly(zulData, null, host, null);
 	}
-	
 }

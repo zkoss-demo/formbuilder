@@ -40,23 +40,13 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	}
 	
 	@Listen("onClick=#buildZulFromJson")
-	public void buildZulFromAbstract() {
-		JSONParser parser = new JSONParser();
-		JSONArray jsonData = null;
-		try {
-			jsonData = (JSONArray) parser.parse(source.getValue());
-		}catch(ParseException e){
-			e.printStackTrace();
-		}
+	public void build() {
+		JSONArray jsonData = parseJsonString();
+		buildFormModel(jsonData);
+		recreate();
+	}
 
-		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
-		for (Object jsonNode : jsonData) {
-			if(jsonNode instanceof JSONObject) {
-				JSONObject jsonObjectNode = (JSONObject) jsonNode;
-				root.add(getNodeFromJsonObject(jsonObjectNode));
-			}
-		}
-		formModel = new FormbuilderModel(root);
+	private void recreate() {
 		Components.removeAllChildren(host);
 		Vlayout formRoot = new Vlayout();
 		Component zkComponents = formModel.toZulComponents(new DemoFormbuilderNodeRenderer());
@@ -70,6 +60,28 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void buildFormModel(JSONArray jsonData) {
+		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
+		for (Object jsonNode : jsonData) {
+			if(jsonNode instanceof JSONObject) {
+				JSONObject jsonObjectNode = (JSONObject) jsonNode;
+				root.add(getNodeFromJsonObject(jsonObjectNode));
+			}
+		}
+		formModel = new FormbuilderModel(root);
+	}
+
+	private JSONArray parseJsonString() {
+		JSONParser parser = new JSONParser();
+		JSONArray jsonData = null;
+		try {
+			jsonData = (JSONArray) parser.parse(source.getValue());
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+		return jsonData;
 	}
 
 	private FormbuilderNode getNodeFromJsonObject(JSONObject jsonObjectNode) {
