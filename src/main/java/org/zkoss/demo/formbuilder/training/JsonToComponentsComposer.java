@@ -21,7 +21,9 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.Window;
 
-
+/**
+ * convert JSON data to ZK components directly without generating zul
+ */
 public class JsonToComponentsComposer extends SelectorComposer<Component> {
 
 	private FormbuilderModel formModel;

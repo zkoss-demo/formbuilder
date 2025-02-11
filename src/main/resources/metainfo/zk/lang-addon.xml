@@ -1,0 +1,6 @@
+<language-addon>
+    <addon-name>form_builder</addon-name>
+    <language-name>xul/html</language-name>
+    <stylesheet href="~./css/formbuiderdemo.css" type="text/css"/>
+
+</language-addon>

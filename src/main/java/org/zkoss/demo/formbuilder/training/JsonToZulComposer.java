@@ -15,7 +15,9 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Textbox;
 
-
+/**
+ * convert Json data to zul content
+ */
 public class JsonToZulComposer extends SelectorComposer<Component> {
 
 	private FormbuilderModel formModel;

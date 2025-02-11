@@ -12,6 +12,9 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
 
+/**
+ * default composer for the generated form
+ */
 public class FormComposer extends SelectorComposer {
 
 	@Listen("onClick=#savebtn")

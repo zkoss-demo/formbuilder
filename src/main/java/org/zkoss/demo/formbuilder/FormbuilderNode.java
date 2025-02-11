@@ -5,6 +5,9 @@ import java.util.Collection;
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.TreeNode;
 
+/**
+ * just a container to store {@link FormbuilderItem}
+ */
 public class FormbuilderNode extends DefaultTreeNode<FormbuilderItem> {
 
 	public FormbuilderNode(FormbuilderItem data) {

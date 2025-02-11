@@ -55,8 +55,7 @@
 						"value": "Add any additional information to this field"
 					}
 	            ]
-        	}
-       	 	]
+        	}]
 		]]></attribute>
 		</textbox>
 		<h:h2>Generated Form</h:h2>

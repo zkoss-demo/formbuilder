@@ -1,16 +1,14 @@
 package org.zkoss.demo.formbuilder;
 
-import java.util.Map;
-
 /**
- * Represents the abstract data of the form element.
- * Used with FormbuilderNode
+ * Represents one field in the form e.g. first name, age.
+ * Hold by {@link FormbuilderNode}.
  */
 public class FormbuilderItem {
 
 	private String name; //input label
-	private String type; //input type
-	private Object value; //input value
+	private String type; //input type, maps to an input template
+	private Object value; //the value of the input component, could be String or Number
 	
 	public FormbuilderItem() {
 		super();
