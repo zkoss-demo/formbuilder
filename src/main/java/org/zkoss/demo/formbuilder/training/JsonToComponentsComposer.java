@@ -27,7 +27,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	private FormbuilderModel formModel;
 	
 	@Wire
-	private Window host;
+	private Component host;
 	
 	@Wire
 	Textbox source;
@@ -46,7 +46,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 		}catch(ParseException e){
 			e.printStackTrace();
 		}
-		Clients.log(jsonData);
+
 		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
 		for (Object jsonNode : jsonData) {
 			if(jsonNode instanceof JSONObject) {

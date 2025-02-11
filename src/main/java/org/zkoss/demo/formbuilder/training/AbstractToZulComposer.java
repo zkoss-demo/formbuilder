@@ -40,7 +40,7 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	@Listen("onClick=#buildZulFromAbstract")
 	public void buildZulFromAbstract() {
 		String zulData = formModel.toZulOutput();
-		Clients.log(zulData);
+
 		Components.removeAllChildren(host);
 		Executions.createComponentsDirectly(zulData, null, host, null);
 	}

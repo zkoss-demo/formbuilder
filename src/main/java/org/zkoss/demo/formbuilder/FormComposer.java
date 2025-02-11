@@ -33,6 +33,6 @@ public class FormComposer extends SelectorComposer {
 			}
 			returnedValues.put(comp.getId(), value);
 		}
-		Clients.log(returnedValues);
+
 	}
 }

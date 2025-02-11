@@ -25,7 +25,7 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 	private FormbuilderModel formModel;
 	
 	@Wire
-	private Window host;
+	private Component host;
 	
 	@Wire
 	Textbox source;
@@ -44,7 +44,7 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 		}catch(ParseException e){
 			e.printStackTrace();
 		}
-		Clients.log(jsonData);
+
 		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
 		for (Object jsonNode : jsonData) {
 			if(jsonNode instanceof JSONObject) {
@@ -57,7 +57,7 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
 		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
 		String zulData = formModel.toZulOutput();
-		Clients.log(zulData);
+
 		Components.removeAllChildren(host);
 		Executions.createComponentsDirectly(zulData, null, host, null);
 	}
