@@ -25,7 +25,7 @@
         	},
         	{
         		"name": "password",
-        		"type": "hiddenText",
+        		"type": "password",
         		"value": ""
         	},
         	{
@@ -35,7 +35,7 @@
         	},
         	{
         		"name": "user details",
-        		"type": "labelOnly",
+        		"type": "label",
         		"value": "user details",
         		"children":[
 					{

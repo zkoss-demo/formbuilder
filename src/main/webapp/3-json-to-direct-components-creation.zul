@@ -60,7 +60,7 @@
        	 	]
 		]]></attribute>
 		</textbox>
-		<button id="buildZulFromJson" label="build zul from model" />
+		<button id="buildZulFromJson" label="build form" />
 		<h:h2>Generated Form</h:h2>
 		<div id="host">
 		</div>
