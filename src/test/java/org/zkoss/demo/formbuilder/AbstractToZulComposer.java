@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AbstractToZulComposer extends SelectorComposer<Component> {
 
-	private FormbuilderModel formModel;
+	private FormModel formModel;
 	
 	@Wire
 	private Div host;
@@ -25,15 +25,15 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	 * assume you already have a form structure in mind.
 	 */
 	private void buildFormModel() {
-		FormbuilderNode root = new FormbuilderNode(new FormbuilderItem(),new ArrayList<FormbuilderNode>());
-		formModel = new FormbuilderModel(root);
-		root.add(new FormbuilderNode(new FormbuilderItem("input1", "shortText", "foo"),new ArrayList<FormbuilderNode>()));
-		ArrayList<FormbuilderNode> node2children = new ArrayList<FormbuilderNode>();
-		node2children.add(new FormbuilderNode(new FormbuilderItem("input2-1", "integer", "10"),new ArrayList<FormbuilderNode>()));
-		node2children.add(new FormbuilderNode(new FormbuilderItem("input2-2", "integer", "15"),new ArrayList<FormbuilderNode>()));
-		node2children.add(new FormbuilderNode(new FormbuilderItem("input2-3", "longText", "FooBarBaz"),new ArrayList<FormbuilderNode>()));
-		root.add(new FormbuilderNode(new FormbuilderItem("input2", "shortText", "bar"),node2children));
-		root.add(new FormbuilderNode(new FormbuilderItem("input3", "shortText", "baz"),new ArrayList<FormbuilderNode>()));
+		FormNode root = new FormNode(new FormField(),new ArrayList<FormNode>());
+		formModel = new FormModel(root);
+		root.add(new FormNode(new FormField("input1", "shortText", "foo"),new ArrayList<FormNode>()));
+		ArrayList<FormNode> node2children = new ArrayList<FormNode>();
+		node2children.add(new FormNode(new FormField("input2-1", "integer", "10"),new ArrayList<FormNode>()));
+		node2children.add(new FormNode(new FormField("input2-2", "integer", "15"),new ArrayList<FormNode>()));
+		node2children.add(new FormNode(new FormField("input2-3", "longText", "FooBarBaz"),new ArrayList<FormNode>()));
+		root.add(new FormNode(new FormField("input2", "shortText", "bar"),node2children));
+		root.add(new FormNode(new FormField("input3", "shortText", "baz"),new ArrayList<FormNode>()));
 	}
 
 	@Listen("onClick=#buildZulFromAbstract")

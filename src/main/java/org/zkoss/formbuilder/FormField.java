@@ -2,18 +2,17 @@ package org.zkoss.formbuilder;
 
 /**
  * Represents one field in the form e.g. first name, age.
- * Hold by {@link FormbuilderNode}.
+ * Hold by {@link FormNode}.
  */
-public class FormbuilderItem {
+public class FormField {
 
 	private String name; //input label
 	private String type; //input type, maps to an input template
 	private Object value; //the value of the input component, could be String or Number
 	
-	public FormbuilderItem() {
-		super();
-	}
-	public FormbuilderItem(String name, String type, Object value) {
+	public FormField() {}
+
+	public FormField(String name, String type, Object value) {
 		super();
 		this.name = name;
 		this.type = type;

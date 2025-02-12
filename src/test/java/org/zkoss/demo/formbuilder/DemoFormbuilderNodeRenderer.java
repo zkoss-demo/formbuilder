@@ -9,7 +9,7 @@ import java.util.*;
 public class DemoFormbuilderNodeRenderer implements FormbuilderNodeRenderer {
 
 	@Override
-	public Component[] render(FormbuilderItem node) {
+	public Component[] render(FormField node) {
 		List<Component> result = new ArrayList<Component>();
 		switch (node.getType()) {
 		case "integer":{

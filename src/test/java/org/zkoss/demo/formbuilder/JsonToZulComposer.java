@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class JsonToZulComposer extends SelectorComposer<Component> {
 
-	private FormbuilderModel formModel;
+	private FormModel formModel;
 	
 	@Wire
 	private Component host;
@@ -36,14 +36,14 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 	}
 
 	private void buildFormModel(JSONArray jsonData) {
-		FormbuilderNode root = new FormbuilderNode(null, new ArrayList<FormbuilderNode>());
+		FormNode root = new FormNode(null, new ArrayList<FormNode>());
 		for (Object jsonNode : jsonData) {
 			if(jsonNode instanceof JSONObject) {
 				JSONObject jsonObjectNode = (JSONObject) jsonNode;
 				root.add(getNodeFromJsonObject(jsonObjectNode));
 			}
 		}
-		formModel = new FormbuilderModel(root);
+		formModel = new FormModel(root);
 	}
 
 
@@ -58,20 +58,20 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 		return jsonData;
 	}
 
-	private FormbuilderNode getNodeFromJsonObject(JSONObject jsonObjectNode) {
+	private FormNode getNodeFromJsonObject(JSONObject jsonObjectNode) {
 		
 		String name = (String) jsonObjectNode.get("name");
 		String type = (String) jsonObjectNode.get("type");
 		Object value = jsonObjectNode.get("value");
 		
-		ArrayList<FormbuilderNode> children = new ArrayList<FormbuilderNode>();
+		ArrayList<FormNode> children = new ArrayList<FormNode>();
 		JSONArray childArray = (JSONArray) jsonObjectNode.get("children");
 		if(childArray != null) {
 			for (Object child : childArray) {
 				children.add(getNodeFromJsonObject((JSONObject) child));
 			}
 		}
-		FormbuilderNode newNode = new FormbuilderNode(new FormbuilderItem(name, type, value), children);
+		FormNode newNode = new FormNode(new FormField(name, type, value), children);
 		return newNode;
 	}
 	

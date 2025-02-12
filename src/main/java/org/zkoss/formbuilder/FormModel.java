@@ -16,12 +16,12 @@ import org.zkoss.zul.TreeNode;
 /**
  * store a form structure in a tree
  */
-public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
+public class FormModel extends AbstractTreeModel<FormNode> {
 
     private Template formTemplate;
     private VelocityEngine velocityEngine;
 
-    public FormbuilderModel(FormbuilderNode root) {
+    public FormModel(FormNode root) {
         super(root);
         initTemplateEngine();
         loadDefaultFieldTemplate();
@@ -43,7 +43,7 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         List<String> zulFiles = new ArrayList<>();
         Enumeration<URL> resources = null;
         try {
-            resources = FormbuilderModel.class.getClassLoader().getResources(templatePath);
+            resources = FormModel.class.getClassLoader().getResources(templatePath);
 
             while (resources.hasMoreElements()) {
                 URL resource = resources.nextElement();
@@ -63,24 +63,24 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
     }
 
     @Override
-    public boolean isLeaf(FormbuilderNode node) {
+    public boolean isLeaf(FormNode node) {
         return node.isLeaf();
     }
 
 
     @Override
-    public FormbuilderNode getChild(FormbuilderNode parent, int index) {
+    public FormNode getChild(FormNode parent, int index) {
         return parent.getChildAt(index);
     }
 
     @Override
-    public int getChildCount(FormbuilderNode parent) {
+    public int getChildCount(FormNode parent) {
         return parent.getChildCount();
     }
 
     public String toZul() {
         List<String> rowsContent = new LinkedList();
-        for (TreeNode<FormbuilderItem> node : this.getRoot().getChildren()) {
+        for (TreeNode<FormField> node : this.getRoot().getChildren()) {
             nodeToRows(node, rowsContent);
         }
         VelocityContext templateContext = new VelocityContext();
@@ -104,15 +104,15 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         formTemplate = velocityEngine.getTemplate("formTemplate.zul");
     }
 
-    private void nodeToRows(TreeNode<FormbuilderItem> node, List<String> rowsContent) {
+    private void nodeToRows(TreeNode<FormField> node, List<String> rowsContent) {
         rowsContent.add(renderNodeTemplate(node));
-        for (TreeNode<FormbuilderItem> childNode : node.getChildren()) {
+        for (TreeNode<FormField> childNode : node.getChildren()) {
             nodeToRows(childNode, rowsContent);
         }
     }
 
-    private String renderNodeTemplate(TreeNode<FormbuilderItem> node) {
-        FormbuilderItem field = node.getData();
+    private String renderNodeTemplate(TreeNode<FormField> node) {
+        FormField field = node.getData();
         Template template = fieldTemplates.get(field.getType());
         if (template == null) {
             return "";
@@ -131,7 +131,7 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         return renderNode(renderer, this.getRoot());
     }
 
-    private Component renderNode(FormbuilderNodeRenderer renderer, FormbuilderNode node) {
+    private Component renderNode(FormbuilderNodeRenderer renderer, FormNode node) {
         Div result = new Div();
         result.addSclass("formItem");
         if (node.getData() != null) {
@@ -142,8 +142,8 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         Div childrenDiv = new Div();
         childrenDiv.setSclass("formItemChildren");
         result.appendChild(childrenDiv);
-        for (TreeNode<FormbuilderItem> childNode : node.getChildren()) {
-            childrenDiv.appendChild(renderNode(renderer, (FormbuilderNode) childNode));
+        for (TreeNode<FormField> childNode : node.getChildren()) {
+            childrenDiv.appendChild(renderNode(renderer, (FormNode) childNode));
         }
         return result;
     }
