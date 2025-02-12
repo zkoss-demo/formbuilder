@@ -32,7 +32,7 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 
 	private void recreate() {
         Components.removeAllChildren(host);
-		Executions.createComponentsDirectly(formModel.toZulOutput(), null, host, null);
+		Executions.createComponentsDirectly(formModel.toZul(), null, host, null);
 	}
 
 	private void buildFormModel(JSONArray jsonData) {

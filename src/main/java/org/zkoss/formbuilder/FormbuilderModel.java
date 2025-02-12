@@ -78,7 +78,7 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         return parent.getChildCount();
     }
 
-    public String toZulOutput() {
+    public String toZul() {
         List<String> rowsContent = new LinkedList();
         for (TreeNode<FormbuilderItem> node : this.getRoot().getChildren()) {
             nodeToRows(node, rowsContent);
@@ -104,20 +104,6 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         formTemplate = velocityEngine.getTemplate("formTemplate.zul");
     }
 
-    private String nodeToZul(TreeNode<FormbuilderItem> node) {
-        StringBuffer output = new StringBuffer();
-        output.append("<div sclass=\"formItem\">\n");
-        output.append(renderNodeTemplate(node));
-        output.append("<div sclass=\"formItemChildren\">\n");
-        for (TreeNode<FormbuilderItem> childNode : node.getChildren()) {
-            output.append(nodeToZul(childNode));
-        }
-        output.append("</div>\n");
-        output.append("</div>\n");
-        return output.toString();
-    }
-
-
     private void nodeToRows(TreeNode<FormbuilderItem> node, List<String> rowsContent) {
         rowsContent.add(renderNodeTemplate(node));
         for (TreeNode<FormbuilderItem> childNode : node.getChildren()) {
@@ -131,7 +117,6 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
         if (template == null) {
             return "";
         }
-
         VelocityContext templateContext = new VelocityContext();
         templateContext.put("nodeName", field.getName());
         templateContext.put("nodeValue", field.getValue());
