@@ -2,8 +2,10 @@ package org.zkoss.demo.formbuilder;
 
 import org.zkoss.formbuilder.*;
 import org.zkoss.zk.ui.*;
+import org.zkoss.zk.ui.event.*;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zk.ui.util.Notification;
 import org.zkoss.zul.Div;
 
 import java.util.ArrayList;
@@ -19,6 +21,10 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		buildFormModel();
+		EventListener eventListener = event -> {
+			Notification.show(event.getData().toString());
+		};
+		FormHelper.subscribeFormSave(eventListener);
 	}
 
 	/**
