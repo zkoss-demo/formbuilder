@@ -11,7 +11,6 @@
 		}
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.training.JsonToZulComposer">
-		<button id="buildZulFromJson" label="build zul from model" />
 		<h:h2>JSON Data</h:h2>
 		<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
         	[{
@@ -28,7 +27,7 @@
         		"name": "password",
         		"type": "hiddenText",
         		"value": ""
-        	}, 
+        	},
         	{
         		"name": "repeat password",
         		"type": "hiddenText",
@@ -59,6 +58,7 @@
 		]]></attribute>
 		</textbox>
 		<h:h2>Generated Form</h:h2>
+		<button id="buildZulFromJson" label="build form" />
 		<div id="host">
 		</div>
 	</div>

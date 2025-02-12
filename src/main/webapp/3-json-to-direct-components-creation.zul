@@ -13,7 +13,6 @@
 		}
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.training.JsonToComponentsComposer">
-		<button id="buildZulFromJson" label="build zul from model" />
 		<h:h2>JSON Data</h:h2>
 	<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
         	[{
@@ -61,6 +60,7 @@
        	 	]
 		]]></attribute>
 		</textbox>
+		<button id="buildZulFromJson" label="build zul from model" />
 		<h:h2>Generated Form</h:h2>
 		<div id="host">
 		</div>
