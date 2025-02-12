@@ -1,15 +1,12 @@
 package org.zkoss.demo.formbuilder.training;
 
-import java.util.ArrayList;
-
 import org.zkoss.demo.formbuilder.*;
-import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Components;
-import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.*;
 import org.zkoss.zk.ui.select.SelectorComposer;
-import org.zkoss.zk.ui.select.annotation.Listen;
-import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.*;
 import org.zkoss.zul.Div;
+
+import java.util.ArrayList;
 
 public class AbstractToZulComposer extends SelectorComposer<Component> {
 

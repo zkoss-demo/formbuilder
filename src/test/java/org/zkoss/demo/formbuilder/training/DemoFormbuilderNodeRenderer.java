@@ -1,14 +1,10 @@
 package org.zkoss.demo.formbuilder.training;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.zkoss.demo.formbuilder.FormbuilderItem;
-import org.zkoss.demo.formbuilder.FormbuilderNodeRenderer;
+import org.zkoss.demo.formbuilder.*;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zul.Intbox;
-import org.zkoss.zul.Label;
-import org.zkoss.zul.Textbox;
+import org.zkoss.zul.*;
+
+import java.util.*;
 
 public class DemoFormbuilderNodeRenderer implements FormbuilderNodeRenderer {
 

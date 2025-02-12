@@ -1,30 +1,19 @@
 package org.zkoss.demo.formbuilder.training;
 
+import org.zkoss.demo.formbuilder.*;
+import org.zkoss.json.*;
+import org.zkoss.json.parser.*;
+import org.zkoss.zk.ui.*;
+import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zul.Textbox;
+
 import java.util.ArrayList;
 
-import org.zkoss.demo.formbuilder.FormComposer;
-import org.zkoss.demo.formbuilder.FormbuilderItem;
-import org.zkoss.demo.formbuilder.FormbuilderModel;
-import org.zkoss.demo.formbuilder.FormbuilderNode;
-import org.zkoss.json.JSONArray;
-import org.zkoss.json.JSONObject;
-import org.zkoss.json.parser.JSONParser;
-import org.zkoss.json.parser.ParseException;
-import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Components;
-import org.zkoss.zk.ui.select.SelectorComposer;
-import org.zkoss.zk.ui.select.annotation.Listen;
-import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zk.ui.util.Clients;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Vlayout;
-import org.zkoss.zul.Window;
-
 /**
- * convert JSON data to ZK components directly without generating zul
+ * convert Json data to zul content
  */
-public class JsonToComponentsComposer extends SelectorComposer<Component> {
+public class JsonToZulComposer extends SelectorComposer<Component> {
 
 	private FormbuilderModel formModel;
 	
@@ -33,12 +22,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	
 	@Wire
 	Textbox source;
-	
-	@Override
-	public void doAfterCompose(Component comp) throws Exception {
-		super.doAfterCompose(comp);
-	}
-	
+
 	@Listen("onClick=#buildZulFromJson")
 	public void build() {
 		JSONArray jsonData = parseJsonString();
@@ -47,19 +31,8 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	}
 
 	private void recreate() {
-		Components.removeAllChildren(host);
-		Vlayout formRoot = new Vlayout();
-		Component zkComponents = formModel.toZulComponents(new DemoFormbuilderNodeRenderer());
-		formRoot.appendChild(zkComponents);
-		Button saveBtn = new Button("Save");
-		saveBtn.setId("savebtn");
-		formRoot.appendChild(saveBtn);
-		host.appendChild(formRoot);
-		try {
-			new FormComposer().doAfterCompose(formRoot);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        Components.removeAllChildren(host);
+		Executions.createComponentsDirectly(formModel.toZulOutput(), null, host, null);
 	}
 
 	private void buildFormModel(JSONArray jsonData) {
@@ -72,6 +45,11 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 		}
 		formModel = new FormbuilderModel(root);
 	}
+
+//	private void addFieldTemplates() {
+//		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
+//		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
+//	}
 
 	private JSONArray parseJsonString() {
 		JSONParser parser = new JSONParser();
