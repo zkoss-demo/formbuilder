@@ -1,5 +1,6 @@
 package org.zkoss.demo.formbuilder;
 
+import org.zkoss.formbuilder.*;
 import org.zkoss.json.*;
 import org.zkoss.json.parser.*;
 import org.zkoss.zk.ui.*;

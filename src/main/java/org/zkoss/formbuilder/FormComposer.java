@@ -1,4 +1,4 @@
-package org.zkoss.demo.formbuilder;
+package org.zkoss.formbuilder;
 
 import java.util.*;
 

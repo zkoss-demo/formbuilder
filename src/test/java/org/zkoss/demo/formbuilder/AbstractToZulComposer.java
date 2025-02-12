@@ -1,6 +1,6 @@
 package org.zkoss.demo.formbuilder;
 
-import org.zkoss.demo.formbuilder.*;
+import org.zkoss.formbuilder.*;
 import org.zkoss.zk.ui.*;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;

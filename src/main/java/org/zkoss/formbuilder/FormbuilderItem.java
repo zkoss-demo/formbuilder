@@ -1,4 +1,4 @@
-package org.zkoss.demo.formbuilder;
+package org.zkoss.formbuilder;
 
 /**
  * Represents one field in the form e.g. first name, age.

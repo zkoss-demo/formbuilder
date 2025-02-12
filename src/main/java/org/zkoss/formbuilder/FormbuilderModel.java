@@ -1,4 +1,4 @@
-package org.zkoss.demo.formbuilder;
+package org.zkoss.formbuilder;
 
 import java.io.*;
 import java.net.URL;
@@ -12,8 +12,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zul.AbstractTreeModel;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.TreeNode;
-
-import com.google.common.base.Strings;
 
 /**
  * store a form structure in a tree
