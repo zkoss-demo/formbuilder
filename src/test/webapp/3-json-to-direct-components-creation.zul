@@ -12,7 +12,7 @@
 			padding-top: 10px;
 		}
 	</style>
-	<div apply="org.zkoss.demo.formbuilder.training.JsonToComponentsComposer">
+	<div apply="org.zkoss.demo.formbuilder.JsonToComponentsComposer">
 		<h:h2>JSON Data</h:h2>
 	<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
         	[{

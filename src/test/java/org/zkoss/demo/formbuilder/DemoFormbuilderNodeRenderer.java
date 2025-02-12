@@ -1,4 +1,4 @@
-package org.zkoss.demo.formbuilder.training;
+package org.zkoss.demo.formbuilder;
 
 import org.zkoss.demo.formbuilder.*;
 import org.zkoss.zk.ui.Component;

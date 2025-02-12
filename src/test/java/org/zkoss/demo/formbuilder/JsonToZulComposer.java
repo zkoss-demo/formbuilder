@@ -1,4 +1,4 @@
-package org.zkoss.demo.formbuilder.training;
+package org.zkoss.demo.formbuilder;
 
 import org.zkoss.demo.formbuilder.*;
 import org.zkoss.json.*;
@@ -6,14 +6,14 @@ import org.zkoss.json.parser.*;
 import org.zkoss.zk.ui.*;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
-import org.zkoss.zul.*;
+import org.zkoss.zul.Textbox;
 
 import java.util.ArrayList;
 
 /**
- * convert JSON data to ZK components directly without generating zul
+ * convert Json data to zul content
  */
-public class JsonToComponentsComposer extends SelectorComposer<Component> {
+public class JsonToZulComposer extends SelectorComposer<Component> {
 
 	private FormbuilderModel formModel;
 	
@@ -22,12 +22,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	
 	@Wire
 	Textbox source;
-	
-	@Override
-	public void doAfterCompose(Component comp) throws Exception {
-		super.doAfterCompose(comp);
-	}
-	
+
 	@Listen("onClick=#buildZulFromJson")
 	public void build() {
 		JSONArray jsonData = parseJsonString();
@@ -36,19 +31,8 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	}
 
 	private void recreate() {
-		Components.removeAllChildren(host);
-		Vlayout formRoot = new Vlayout();
-		Component zkComponents = formModel.toZulComponents(new DemoFormbuilderNodeRenderer());
-		formRoot.appendChild(zkComponents);
-		Button saveBtn = new Button("Save");
-		saveBtn.setId("savebtn");
-		formRoot.appendChild(saveBtn);
-		host.appendChild(formRoot);
-		try {
-			new FormComposer().doAfterCompose(formRoot);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        Components.removeAllChildren(host);
+		Executions.createComponentsDirectly(formModel.toZulOutput(), null, host, null);
 	}
 
 	private void buildFormModel(JSONArray jsonData) {
@@ -61,6 +45,11 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 		}
 		formModel = new FormbuilderModel(root);
 	}
+
+//	private void addFieldTemplates() {
+//		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
+//		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
+//	}
 
 	private JSONArray parseJsonString() {
 		JSONParser parser = new JSONParser();

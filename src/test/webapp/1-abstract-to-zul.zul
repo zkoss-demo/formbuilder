@@ -4,7 +4,7 @@
 			padding-left: 20px;
 		}
 	</style>
-	<div apply="org.zkoss.demo.formbuilder.training.AbstractToZulComposer">
+	<div apply="org.zkoss.demo.formbuilder.AbstractToZulComposer">
 		<h:h2>Generated Form</h:h2>
 		<button id="buildZulFromAbstract" label="build form from model" />
 		<div id="host" style="margin: 10px 0">
