@@ -78,6 +78,9 @@ public class FormModel extends AbstractTreeModel<FormNode> {
         return parent.getChildCount();
     }
 
+    /**
+     * Generate the form into zul content.
+     */
     public String toZul() {
         List<String> rowsContent = new LinkedList();
         for (TreeNode<FormField> node : this.getRoot().getChildren()) {
@@ -126,26 +129,29 @@ public class FormModel extends AbstractTreeModel<FormNode> {
         return writer.toString();
     }
 
-
-    public Component toZulComponents(FormbuilderNodeRenderer renderer) {
+    /**
+     * Generate the form into a set of {@link Component}.
+     * @return root component of the form
+     */
+    public Component toComponents(FormbuilderNodeRenderer renderer) {
         return renderNode(renderer, this.getRoot());
     }
 
-    private Component renderNode(FormbuilderNodeRenderer renderer, FormNode node) {
-        Div result = new Div();
-        result.addSclass("formItem");
-        if (node.getData() != null) {
-            for (Component renderedChild : Arrays.asList(renderer.render(node.getData()))) {
-                result.appendChild(renderedChild);
+    private Component renderNode(FormbuilderNodeRenderer renderer, FormNode rootNode) {
+        Div rootComponent = new Div();
+        rootComponent.addSclass("formItem");
+        if (rootNode.getData() != null) {
+            for (Component renderedChild : Arrays.asList(renderer.render(rootNode.getData()))) {
+                rootComponent.appendChild(renderedChild);
             }
         }
         Div childrenDiv = new Div();
         childrenDiv.setSclass("formItemChildren");
-        result.appendChild(childrenDiv);
-        for (TreeNode<FormField> childNode : node.getChildren()) {
+        rootComponent.appendChild(childrenDiv);
+        for (TreeNode<FormField> childNode : rootNode.getChildren()) {
             childrenDiv.appendChild(renderNode(renderer, (FormNode) childNode));
         }
-        return result;
+        return rootComponent;
     }
 
 

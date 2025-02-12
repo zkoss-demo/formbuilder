@@ -38,7 +38,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	private void recreate() {
 		Components.removeAllChildren(host);
 		Vlayout formRoot = new Vlayout();
-		Component zkComponents = formModel.toZulComponents(new DemoFormbuilderNodeRenderer());
+		Component zkComponents = formModel.toComponents(new DemoFormbuilderNodeRenderer());
 		formRoot.appendChild(zkComponents);
 		Button saveBtn = new Button("Save");
 		saveBtn.setId("savebtn");
