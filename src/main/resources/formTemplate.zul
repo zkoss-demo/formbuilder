@@ -1,5 +1,5 @@
 <zk>
-    <grid apply="org.zkoss.formbuilder.FormComposer" sizedByContent="true" width="fit-content">
+    <grid apply="org.zkoss.formbuilder.FormComposer" width="30%">
         <columns>
             <column label="name"/>
             <column/>

@@ -12,7 +12,7 @@
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.JsonToZulComposer">
 		<h:h2>JSON Data</h:h2>
-		<textbox id="source" multiline="true" height="400px" width="100%"><attribute name="value"><![CDATA[
+		<textbox id="source" multiline="true" height="400px" width="30%"><attribute name="value"><![CDATA[
         	[{
         		"name": "user first name",
         		"type": "shortText",

@@ -46,10 +46,6 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 		formModel = new FormbuilderModel(root);
 	}
 
-//	private void addFieldTemplates() {
-//		formModel.getFormbuilderItemTemplates().put("hiddenText", "<label value=\"$nodeName$\" /><textbox type=\"password\" value=\"$nodeValue$\" id=\"$nodeName$\" />");
-//		formModel.getFormbuilderItemTemplates().put("labelOnly", "<label value=\"$nodeValue$\" />");
-//	}
 
 	private JSONArray parseJsonString() {
 		JSONParser parser = new JSONParser();
