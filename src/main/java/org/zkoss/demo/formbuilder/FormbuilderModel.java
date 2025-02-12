@@ -20,14 +20,11 @@ import com.google.common.base.Strings;
  */
 public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
 
-    private Map<String, String> formbuilderItemTemplates;
-
     private Template formTemplate;
     private VelocityEngine velocityEngine;
 
     public FormbuilderModel(FormbuilderNode root) {
         super(root);
-        formbuilderItemTemplates = new HashMap<String, String>(DefaultTemplate.getDefaultFormFieldTemplates());
         initTemplateEngine();
         loadDefaultFieldTemplate();
     }
@@ -131,19 +128,19 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
     }
 
     private String renderNodeTemplate(TreeNode<FormbuilderItem> node) {
-        String templateString = formbuilderItemTemplates.get(node.getData().getType());
-        if (
-                Strings.isNullOrEmpty(templateString)
-        )
-            throw new RuntimeException("template not found: " + node.getData().getType());
-        if (
-                Strings.isNullOrEmpty(node.getData().getName())
-        )
-            throw new RuntimeException("Required name (name:" + node.getData().getName() + ")");
+        FormbuilderItem field = node.getData();
+        Template template = fieldTemplates.get(field.getType());
+        if (template == null) {
+            return "";
+        }
 
-        templateString = templateString.replace("$nodeValue$", String.valueOf(node.getData().getValue()));
-        templateString = templateString.replace("$nodeName$", node.getData().getName());
-        return templateString;
+        VelocityContext templateContext = new VelocityContext();
+        templateContext.put("nodeName", field.getName());
+        templateContext.put("nodeValue", field.getValue());
+        StringWriter writer = new StringWriter();
+        template.merge(templateContext,writer);
+
+        return writer.toString();
     }
 
 
@@ -166,14 +163,6 @@ public class FormbuilderModel extends AbstractTreeModel<FormbuilderNode> {
             childrenDiv.appendChild(renderNode(renderer, (FormbuilderNode) childNode));
         }
         return result;
-    }
-
-    public Map<String, String> getFormbuilderItemTemplates() {
-        return formbuilderItemTemplates;
-    }
-
-    public void setFormbuilderItemTemplates(Map<String, String> formbuilderItemTemplates) {
-        this.formbuilderItemTemplates = formbuilderItemTemplates;
     }
 
 

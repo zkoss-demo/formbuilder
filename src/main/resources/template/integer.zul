@@ -1,1 +1,1 @@
-<label value="$nodeName" /><intbox value="$nodeValue$" id="$nodeName" />
+<label value="$nodeName" /><intbox value="$nodeValue" id="$nodeName" />
