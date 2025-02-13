@@ -1,6 +1,6 @@
 package org.zkoss.formbuilder;
 
-import java.util.Collection;
+import java.util.*;
 
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.TreeNode;
@@ -26,6 +26,14 @@ public class FormNode extends DefaultTreeNode<FormField> {
 	public FormNode getChildAt(int childIndex) {
 		return (FormNode) super.getChildAt(childIndex);
 	}
-	
+
+	/** simplify adding a {@link FormField} without instantiating a {@link FormNode}*/
+	public void add(FormField field){
+		this.add(new FormNode(field, new LinkedList<>()));
+	}
+
+	public void add(FormField field, List children) {
+		this.add(new FormNode(field, children));
+	}
 
 }

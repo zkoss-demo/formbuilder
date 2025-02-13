@@ -21,6 +21,13 @@ public class FormModel extends AbstractTreeModel<FormNode> {
     private Template formTemplate;
     private VelocityEngine velocityEngine;
 
+    /* simplify creating a instance, create a default root node */
+    public FormModel(){
+        super(new FormNode(null, new LinkedList<>()));
+        initTemplateEngine();
+        loadDefaultFieldTemplate();
+    }
+
     public FormModel(FormNode root) {
         super(root);
         initTemplateEngine();
@@ -122,7 +129,7 @@ public class FormModel extends AbstractTreeModel<FormNode> {
         }
         VelocityContext templateContext = new VelocityContext();
         templateContext.put("nodeName", field.getName());
-        templateContext.put("nodeValue", field.getValue());
+        templateContext.put("nodeValue", Optional.ofNullable(field.getValue()).orElse(""));
         StringWriter writer = new StringWriter();
         template.merge(templateContext,writer);
 
