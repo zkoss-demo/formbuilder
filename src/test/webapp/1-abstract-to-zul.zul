@@ -5,8 +5,8 @@
 		}
 	</style>
 	<div apply="org.zkoss.demo.formbuilder.AbstractToZulComposer">
+		<button id="buildZulFromAbstract" label="build form directly" /><h:br/>
 		<h:h2>Generated Form</h:h2>
-		<button id="buildZulFromAbstract" label="build form from model" />
 		<div id="host" style="margin: 10px 0">
 		</div>
 	</div>
