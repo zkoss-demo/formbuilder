@@ -26,6 +26,7 @@ public class JsonToComponentsComposer extends SelectorComposer<Component> {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		FormHelper.showUseInput();
 	}
 	
 	@Listen("onClick=#buildZulFromJson")

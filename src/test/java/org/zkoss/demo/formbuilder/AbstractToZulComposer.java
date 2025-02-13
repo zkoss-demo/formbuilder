@@ -21,25 +21,25 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		buildFormModel();
-		EventListener eventListener = event -> {
-			Notification.show(event.getData().toString());
-		};
-		FormHelper.subscribeFormSave(eventListener);
+		FormHelper.showUseInput();
 	}
 
 	/**
 	 * assume you already have a form structure in mind.
 	 */
 	private void buildFormModel() {
-		FormNode root = new FormNode(new FormField(),new ArrayList<FormNode>());
-		formModel = new FormModel(root);
-		root.add(new FormNode(new FormField("input1", "shortText", "foo"),new ArrayList<FormNode>()));
+		formModel = new FormModel();
+		FormNode root = formModel.getRoot();
+		root.add(new FormField("Project Name", "shortText", "Summer Product Launch"));
+
+		//create a field with 2nd level fields
 		ArrayList<FormNode> node2children = new ArrayList<FormNode>();
-		node2children.add(new FormNode(new FormField("input2-1", "integer", "10"),new ArrayList<FormNode>()));
-		node2children.add(new FormNode(new FormField("input2-2", "integer", "15"),new ArrayList<FormNode>()));
-		node2children.add(new FormNode(new FormField("input2-3", "longText", "FooBarBaz"),new ArrayList<FormNode>()));
-		root.add(new FormNode(new FormField("input2", "shortText", "bar"),node2children));
-		root.add(new FormNode(new FormField("input3", "shortText", "baz"),new ArrayList<FormNode>()));
+		node2children.add(new FormNode(new FormField("Task Detail", "longText", "Design social media graphics"),new ArrayList<FormNode>()));
+		node2children.add(new FormNode(new FormField("Assigned Team Member", "shortText", "Peter"),new ArrayList<FormNode>()));
+		node2children.add(new FormNode(new FormField("Priority Level", "integer", "3"),new ArrayList<FormNode>()));
+		root.add(new FormField("Main Task", "shortText", "Create Promotional Content"),node2children);
+
+		root.add(new FormField("Deadline", "date", null));
 	}
 
 	@Listen("onClick=#buildZulFromAbstract")

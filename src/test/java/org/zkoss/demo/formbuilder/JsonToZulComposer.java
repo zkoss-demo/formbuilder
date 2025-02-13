@@ -28,6 +28,7 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 		JSONArray jsonData = parseJsonString();
 		buildFormModel(jsonData);
 		recreate();
+		FormHelper.showUseInput();
 	}
 
 	private void recreate() {
