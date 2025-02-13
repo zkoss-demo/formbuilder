@@ -1,0 +1,1 @@
+<label value="$nodeName"/><datebox id="$nodeName" constraint="no empty" />
