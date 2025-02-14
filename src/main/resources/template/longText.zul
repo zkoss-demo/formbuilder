@@ -1,1 +1,1 @@
-<label value="$nodeName" /><textbox value="$nodeValue" id="$nodeName" multiline="true" height="250px"/>
+<label value="$name" /><textbox value="$value" id="$name" multiline="true" height="250px"/>

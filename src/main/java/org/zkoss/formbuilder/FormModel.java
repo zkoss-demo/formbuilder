@@ -128,8 +128,8 @@ public class FormModel extends AbstractTreeModel<FormNode> {
             return "";
         }
         VelocityContext templateContext = new VelocityContext();
-        templateContext.put("nodeName", field.getName());
-        templateContext.put("nodeValue", Optional.ofNullable(field.getValue()).orElse(""));
+        templateContext.put("name", field.getName());
+        templateContext.put("value", Optional.ofNullable(field.getValue()).orElse(""));
         StringWriter writer = new StringWriter();
         template.merge(templateContext,writer);
 

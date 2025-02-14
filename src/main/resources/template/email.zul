@@ -1,2 +1,2 @@
-<label value="$nodeName"/>
-<textbox id="$nodeName" type="email" constraint="no empty, /.+@.+\..{2,}/ : Invalid email format" value="$nodeValue"/>
+<label value="$name"/>
+<textbox id="$name" type="email" constraint="no empty, /.+@.+\..{2,}/ : Invalid email format" value="$value"/>
