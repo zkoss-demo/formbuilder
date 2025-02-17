@@ -69,6 +69,15 @@ public class FormModel extends AbstractTreeModel<FormNode> {
         return zulFiles;
     }
 
+    /** a shortcut method to add a field. **/
+    public void add(FormField field){
+        this.getRoot().add(field);
+    }
+
+    public void add(FormField field, List children) {
+        this.getRoot().add(field, children);
+    }
+
     @Override
     public boolean isLeaf(FormNode node) {
         return node.isLeaf();

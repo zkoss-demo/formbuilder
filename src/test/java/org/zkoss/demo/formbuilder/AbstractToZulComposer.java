@@ -29,17 +29,16 @@ public class AbstractToZulComposer extends SelectorComposer<Component> {
 	 */
 	private void buildFormModel() {
 		formModel = new FormModel();
-		FormNode root = formModel.getRoot();
-		root.add(new FormField("Project Name", "shortText", "Summer Product Launch"));
+		formModel.add(new FormField("Project Name", "shortText", "Summer Product Launch"));
 
 		//create a field with 2nd level fields
 		ArrayList<FormNode> node2children = new ArrayList<FormNode>();
 		node2children.add(new FormNode(new FormField("Task Detail", "longText", "Design social media graphics"),new ArrayList<FormNode>()));
 		node2children.add(new FormNode(new FormField("Assigned Team Member", "shortText", "Peter"),new ArrayList<FormNode>()));
 		node2children.add(new FormNode(new FormField("Priority Level", "integer", "3"),new ArrayList<FormNode>()));
-		root.add(new FormField("Main Task", "shortText", "Create Promotional Content"),node2children);
+		formModel.add(new FormField("Main Task", "shortText", "Create Promotional Content"),node2children);
 
-		root.add(new FormField("Deadline", "date", null));
+		formModel.add(new FormField("Deadline", "date", null));
 	}
 
 	@Listen("onClick=#buildZulFromAbstract")

@@ -7,7 +7,7 @@ package org.zkoss.formbuilder;
 public class FormField {
 
 	private String name; //input label
-	private String type; //input type, maps to an input template
+	private String type; //input type, determine to render with which field template
 	private Object value; //the value of the input component, could be String or Number
 	
 	public FormField() {}

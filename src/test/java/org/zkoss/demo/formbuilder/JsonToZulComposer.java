@@ -37,14 +37,14 @@ public class JsonToZulComposer extends SelectorComposer<Component> {
 	}
 
 	private void buildFormModel(JSONArray jsonData) {
-		FormNode root = new FormNode(null, new ArrayList<FormNode>());
+		formModel = new FormModel();
+		FormNode root = formModel.getRoot();
 		for (Object jsonNode : jsonData) {
 			if(jsonNode instanceof JSONObject) {
 				JSONObject jsonObjectNode = (JSONObject) jsonNode;
 				root.add(getNodeFromJsonObject(jsonObjectNode));
 			}
 		}
-		formModel = new FormModel(root);
 	}
 
 
