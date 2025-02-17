@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.zkoss.demo</groupId>
 	<artifactId>formbuilder</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<properties>
 		<zk.version>10.0.0-Eval</zk.version>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -49,16 +49,6 @@
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zuti</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zkplus</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zhtml</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
 		<dependency>
