@@ -16,5 +16,8 @@ visit `http://localhost:8080/formbuilder/`
 # Main Idea
 Provide `FormbuilderModel` to store a form structure and produce a zul content based on the structure.
 
+![](formTemplate.png)
+![](fieldTemplate.png)
+
 # Build
 `mvn clean package`
