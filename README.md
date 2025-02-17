@@ -1,4 +1,4 @@
-# formbuilder
+# form builder
 
 A demo project for the form builder smalltalk
 
@@ -16,3 +16,5 @@ visit `http://localhost:8080/formbuilder/`
 # Main Idea
 Provide `FormbuilderModel` to store a form structure and produce a zul content based on the structure.
 
+# Build
+`mvn clean package`
